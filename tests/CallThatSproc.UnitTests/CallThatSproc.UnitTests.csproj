@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CallThatSproc\CallThatSproc.csproj" />
+  </ItemGroup>
+
 </Project>
