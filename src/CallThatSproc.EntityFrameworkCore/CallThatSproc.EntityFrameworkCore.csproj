@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CallThatSproc\CallThatSproc.csproj" />
+  </ItemGroup>
+
 </Project>
