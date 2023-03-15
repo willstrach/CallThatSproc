@@ -7,7 +7,7 @@ public class StoredProcedureParameterExtensionsTests
     {
         //  Arrange
         var parameterName = "nameWithoutPrefix";
-        var parameter = new StoredProcedureParameter<string>(parameterName, "some arbitrary value");
+        var parameter = new StoredProcedureParameter(parameterName, "some arbitrary value");
         var expectedString = "@nameWithoutPrefix=@nameWithoutPrefix";
 
         // Act
@@ -22,7 +22,7 @@ public class StoredProcedureParameterExtensionsTests
     {
         //  Arrange
         var parameterName = "@nameWithPrefix";
-        var parameter = new StoredProcedureParameter<string>(parameterName, "some arbitrary value");
+        var parameter = new StoredProcedureParameter(parameterName, "some arbitrary value");
         var expectedString = "@nameWithPrefix=@nameWithPrefix";
 
         // Act
@@ -36,7 +36,7 @@ public class StoredProcedureParameterExtensionsTests
     public void ToSqlString_InputParameter_ShouldNotHaveOutSuffix()
     {
         // Arrange
-        var parameter = new StoredProcedureParameter<string>("arbitraryName", "some arbitrary value", direction: System.Data.ParameterDirection.Input);
+        var parameter = new StoredProcedureParameter("arbitraryName", "some arbitrary value", direction: System.Data.ParameterDirection.Input);
 
         // Act
         var sqlString = parameter.ToSqlString();
@@ -49,7 +49,7 @@ public class StoredProcedureParameterExtensionsTests
     public void ToSqlString_OutputParameter_ShouldHaveOutSuffix()
     {
         // Arrange
-        var parameter = new StoredProcedureParameter<string>("arbitraryName", "some arbitrary value", direction: System.Data.ParameterDirection.Output);
+        var parameter = new StoredProcedureParameter("arbitraryName", "some arbitrary value", direction: System.Data.ParameterDirection.Output);
 
         // Act
         var sqlString = parameter.ToSqlString();
@@ -62,7 +62,7 @@ public class StoredProcedureParameterExtensionsTests
     public void ToSqlString_InOutParameter_ShouldHaveOutSuffix()
     {
         // Arrange
-        var parameter = new StoredProcedureParameter<string>("arbitraryName", "some arbitrary value", direction: System.Data.ParameterDirection.InputOutput);
+        var parameter = new StoredProcedureParameter("arbitraryName", "some arbitrary value", direction: System.Data.ParameterDirection.InputOutput);
 
         // Act
         var sqlString = parameter.ToSqlString();

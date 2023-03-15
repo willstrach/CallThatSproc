@@ -1,15 +1,37 @@
 ﻿using System.Data;
+using System.Net.Http.Headers;
 
 namespace CallThatSproc;
 
-public class StoredProcedureParameter<TValue> : IStoredProcedureParameter where TValue : IConvertible
+public class StoredProcedureParameter : IStoredProcedureParameter
 {
-    public StoredProcedureParameter(string name, TValue? value = default, DbType? dbType = null, ParameterDirection direction = ParameterDirection.Input)
+    public StoredProcedureParameter(string name, IConvertible? value = default, DbType? dbType = null, ParameterDirection direction = ParameterDirection.Input)
     {
         Name = name;
         Value = value;
         DbType = dbType;
         Direction = direction;
+    }
+
+    public StoredProcedureParameter(string name, IUserDefinedTableType value)
+    {
+        Name = name;
+        Value = value.ToDataTable();
+    }
+
+    public StoredProcedureParameter(string name, IEnumerable<IUserDefinedTableType> value)
+    {
+        Name = name;
+
+        var dataTable = new DataTable();
+        dataTable.Columns.AddRange(value.First().GetDataColumns());
+
+        foreach (var tableType in value)
+        {
+            dataTable.Rows.Add(tableType.ToDataTableRow());
+        }
+
+        Value = dataTable;
     }
 
     public string Name { get; }
