@@ -5,7 +5,7 @@ namespace CallThatSproc;
 
 public abstract class UserDefinedTableType : IUserDefinedTableType
 {
-    public string GetTypeName()
+    public virtual string GetTypeName()
     {
         var nameAttribute = (UDTNameAttribute?)Attribute.GetCustomAttribute(this.GetType(), typeof(UDTNameAttribute));
 
@@ -17,7 +17,7 @@ public abstract class UserDefinedTableType : IUserDefinedTableType
         return nameAttribute.Name;
     }
 
-    public DataTable ToDataTable()
+    public virtual DataTable ToDataTable()
     {
         var dataTable = new DataTable();
         var properties = this.GetType().GetProperties();
@@ -32,7 +32,7 @@ public abstract class UserDefinedTableType : IUserDefinedTableType
         return dataTable;
     }
 
-    public object?[] ToDataTableRow()
+    public virtual object?[] ToDataTableRow()
     {
         var properties = this.GetType().GetProperties();
 
@@ -44,7 +44,7 @@ public abstract class UserDefinedTableType : IUserDefinedTableType
         return properties.Select(property => property.GetValue(this)).ToArray();
     }
 
-    public DataColumn[] GetDataColumns()
+    public virtual DataColumn[] GetDataColumns()
     {
         var properties = this.GetType().GetProperties();
 

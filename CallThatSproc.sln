@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallThatSproc.EntityFramewo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallThatSproc.UnitTests", "tests\CallThatSproc.UnitTests\CallThatSproc.UnitTests.csproj", "{EECF6055-8CFE-43B3-9503-A4495C69B736}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallThatSproc.EntityFrameworkCore.IntegrationTests", "tests\CallThatSproc.EntityFrameworkCore.IntegrationTests\CallThatSproc.EntityFrameworkCore.IntegrationTests.csproj", "{0082034A-000E-4427-92CB-7CEFD81F70F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,11 +42,16 @@ Global
 		{EECF6055-8CFE-43B3-9503-A4495C69B736}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EECF6055-8CFE-43B3-9503-A4495C69B736}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EECF6055-8CFE-43B3-9503-A4495C69B736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0082034A-000E-4427-92CB-7CEFD81F70F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0082034A-000E-4427-92CB-7CEFD81F70F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0082034A-000E-4427-92CB-7CEFD81F70F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0082034A-000E-4427-92CB-7CEFD81F70F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A94EBC1E-11C9-4C95-A40C-B654958AF0D3} = {36C112EB-A9A3-4665-BEC5-2F2306D31608}
 		{04DACB85-AFC1-486C-A5F2-E78AD1C4D203} = {36C112EB-A9A3-4665-BEC5-2F2306D31608}
 		{E274E236-BFD2-4971-90C4-7325521EA039} = {585F1FCE-3943-418B-8EB3-641BD67692F8}
 		{EECF6055-8CFE-43B3-9503-A4495C69B736} = {585F1FCE-3943-418B-8EB3-641BD67692F8}
+		{0082034A-000E-4427-92CB-7CEFD81F70F6} = {585F1FCE-3943-418B-8EB3-641BD67692F8}
 	EndGlobalSection
 EndGlobal

@@ -2,8 +2,8 @@
 {
     public interface IStoredProcedureCall
     {
-        string Schema { get; set; }
-        string Name { get; set; }
+        string Schema { get; }
+        string Name { get; }
         List<IStoredProcedureParameter> Parameters { get; set; }
     }
 }

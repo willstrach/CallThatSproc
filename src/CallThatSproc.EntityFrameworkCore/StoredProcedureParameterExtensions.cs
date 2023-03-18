@@ -14,12 +14,16 @@ public static class StoredProcedureParameterExtensions
 
     public static SqlParameter ToSqlParameter(this IStoredProcedureParameter parameter)
     {
-        var sqlParameter = new SqlParameter(parameter.Name, parameter.Value);
+        var cleanName = parameter.Name.StartsWith("@") ? parameter.Name : $"@{parameter.Name}";
+
+        var sqlParameter = new SqlParameter(cleanName, parameter.Value);
+        sqlParameter.Size = -1;
         sqlParameter.Direction = parameter.Direction;
 
         if (parameter.Value is DataTable)
         {
             sqlParameter.SqlDbType = SqlDbType.Structured;
+            sqlParameter.TypeName = parameter.TypeName;
             return sqlParameter;
         }
 

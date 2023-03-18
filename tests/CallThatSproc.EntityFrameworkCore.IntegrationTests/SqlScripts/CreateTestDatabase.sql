@@ -1,0 +1,2 @@
+USE master;
+CREATE DATABASE CallThatSproc_EntityFrameworkTesting

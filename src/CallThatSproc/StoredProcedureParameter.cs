@@ -11,12 +11,14 @@ public class StoredProcedureParameter : IStoredProcedureParameter
         Value = value;
         DbType = dbType;
         Direction = direction;
+        TypeName = "";
     }
 
     public StoredProcedureParameter(string name, IUserDefinedTableType value)
     {
         Name = name;
         Value = value.ToDataTable();
+        TypeName = value.GetTypeName();
     }
 
     public StoredProcedureParameter(string name, IEnumerable<IUserDefinedTableType> value)
@@ -31,11 +33,15 @@ public class StoredProcedureParameter : IStoredProcedureParameter
             dataTable.Rows.Add(tableType.ToDataTableRow());
         }
 
+        TypeName = value.First().GetTypeName();
+
         Value = dataTable;
     }
 
     public string Name { get; }
-    public object? Value { get; }
+    public object? Value { get; set; }
     public DbType? DbType { get; }
     public ParameterDirection Direction { get; } = ParameterDirection.Input;
+
+    public string TypeName { get; }
 }
