@@ -51,15 +51,15 @@ public class DatabaseFixture : IDisposable
     private void ExecuteSetupScripts()
     {
         if (DatabaseConnection.State == ConnectionState.Closed) DatabaseConnection.Open();
-        
-        foreach (var procedureCreationCommand in GetProcedureCreationCommands())
-        {
-            procedureCreationCommand.ExecuteNonQuery();
-        }
 
         foreach (var tableCreationCommand in GetTableCreationCommands())
         {
             tableCreationCommand.ExecuteNonQuery();
+        }
+        
+        foreach (var procedureCreationCommand in GetProcedureCreationCommands())
+        {
+            procedureCreationCommand.ExecuteNonQuery();
         }
 
         if (DatabaseConnection.State == ConnectionState.Open) DatabaseConnection.Close();
