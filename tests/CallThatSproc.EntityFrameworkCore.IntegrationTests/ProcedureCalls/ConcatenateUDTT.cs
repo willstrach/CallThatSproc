@@ -14,8 +14,8 @@ public class ConcatenateUDTT : StoredProcedureCall
     }
 }
 
-[TableType("TwoNVarchar")]
-public class TwoNVarchar
+[TypeName("TwoNVarchar")]
+public class TwoNVarchar : ITableType
 {
     public string Value1 { get; set; } = string.Empty;
     public string Value2 { get; set; } = string.Empty;

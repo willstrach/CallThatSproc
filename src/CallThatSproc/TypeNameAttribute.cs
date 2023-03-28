@@ -1,9 +1,9 @@
 ﻿namespace CallThatSproc;
 
 [AttributeUsage(AttributeTargets.Class)]
-public class TableTypeAttribute : Attribute
+public class TypeNameAttribute : Attribute
 {
-    public TableTypeAttribute(string name)
+    public TypeNameAttribute(string name)
     {
         Name = name;
     }

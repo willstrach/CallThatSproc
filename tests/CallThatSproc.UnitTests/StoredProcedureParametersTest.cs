@@ -230,8 +230,8 @@ public class StoredProcedureParametersTest
         Assert.Equal(expectedValues, row);
     }
 
-    [TableType("ThisIsTheTypeName")] class ObjectWithName { }
-    [TableType("ThisIsTheTypeName", Schema = "theSchema")] class ObjectWithNameAndSchema { }
+    [TypeName("ThisIsTheTypeName")] class ObjectWithName { }
+    [TypeName("ThisIsTheTypeName", Schema = "theSchema")] class ObjectWithNameAndSchema { }
 
     [Fact]
     public void ConvertToDataTableWithName_WithUnnamedObject_ShouldHaveCorrectTypeName()
@@ -311,9 +311,9 @@ public class StoredProcedureParametersTest
         Assert.Equal(columnNames, dataTable.Columns.Cast<DataColumn>().Select(col => col.ColumnName));
     }
 
-    [TableType("typeName", Schema = "schema")]
+    [TypeName("typeName", Schema = "schema")]
     [ColumnOrder("StringProperty, BoolProperty, IntegerProperty")]
-    class TestObject
+    class TestObject : ITableType
     {
         public int IntegerProperty { get; set; }
         public string StringProperty { get; set; } = string.Empty;

@@ -15,22 +15,31 @@ public class StoredProcedureParameters : IStoredProcedureParameters
 
     public void Add(SqlParameter parameter) => _parameters.Add(parameter);
 
-    public void Add<TValue>(string name, TValue value, bool output = false)
+    public void Add<TValue>(string name, TValue value, bool output = false) where TValue : struct
     {
         var normalisedName = Normalise(name);
 
-        if (value is string || value is decimal || typeof(TValue).IsPrimitive)
+        _parameters.Add(new SqlParameter(normalisedName, value)
         {
-            _parameters.Add(new SqlParameter(normalisedName, value)
-            {
-                Direction = output ? ParameterDirection.Output : ParameterDirection.Input,
-                Size = -1,
-            });
-            return;
-        }
+            Direction = output ? ParameterDirection.Output : ParameterDirection.Input,
+            Size = -1,
+        });
+    }
 
-        if (output) throw new NotSupportedException("Output table types are not supported");
+    public void Add(string name, string value, bool output = false)
+    {
+        var normalisedName = Normalise(name);
 
+        _parameters.Add(new SqlParameter(normalisedName, value)
+        {
+            Direction = output ? ParameterDirection.Output : ParameterDirection.Input,
+            Size = -1,
+        });
+    }
+
+    public void Add(string name, ITableType value)
+    {
+        var normalisedName = Normalise(name);
         var (typeName, dataTable) = ConvertToDataTableWithName(value);
         _parameters.Add(new SqlParameter(normalisedName, dataTable)
         {
@@ -50,11 +59,11 @@ public class StoredProcedureParameters : IStoredProcedureParameters
 
     internal static (string, DataTable) ConvertToDataTableWithName<TValue>(TValue value)
     {
-        var tableTypeAttribute = (TableTypeAttribute?)Attribute.GetCustomAttribute(typeof(TValue), typeof(TableTypeAttribute));
+        var tableTypeAttribute = (TypeNameAttribute?)Attribute.GetCustomAttribute(typeof(TValue), typeof(TypeNameAttribute));
         var columnOrderAttribute = (ColumnOrderAttribute?)Attribute.GetCustomAttribute(typeof(TValue), typeof(ColumnOrderAttribute));
 
         var dataTable = new DataTable();
-        var valueType = typeof(TValue);
+        var valueType = value.GetType();
         var properties = valueType.GetProperties();
 
         var columnNames = columnOrderAttribute is null ? properties.Select(property => property.Name)
