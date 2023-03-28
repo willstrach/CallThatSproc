@@ -4,6 +4,6 @@
     {
         string Schema { get; }
         string Name { get; }
-        List<IStoredProcedureParameter> Parameters { get; set; }
+        StoredProcedureParameters Parameters { get; }
     }
 }

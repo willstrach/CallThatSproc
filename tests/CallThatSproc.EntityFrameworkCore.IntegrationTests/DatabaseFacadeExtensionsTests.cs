@@ -60,11 +60,11 @@ public class DatabaseFacadeExtensionsTests
 
         // Act
         var response = _context.Database.ExecuteStoredProcedureCall(procedureCall);
-        var sumParameter = response.OutParameters.First(parameter => parameter.Name == "Sum");
+        var sumValue = procedureCall.Parameters.GetValueOf("Sum");
 
         // Assert
-        Assert.IsType<int>(sumParameter.Value);
-        Assert.Equal(25, sumParameter.Value);
+        Assert.IsType<int>(sumValue);
+        Assert.Equal(25, sumValue);
     }
 
     [Fact]
@@ -75,11 +75,11 @@ public class DatabaseFacadeExtensionsTests
 
         // Act
         var response = await _context.Database.ExecuteStoredProcedureCallAsync(procedureCall);
-        var sumParameter = response.OutParameters.First(parameter => parameter.Name == "Sum");
+        var sumValue = procedureCall.Parameters.GetValueOf("Sum");
 
         // Assert
-        Assert.IsType<int>(sumParameter.Value);
-        Assert.Equal(25, sumParameter.Value);
+        Assert.IsType<int>(sumValue);
+        Assert.Equal(25, sumValue);
     }
 
     [Fact]
@@ -90,11 +90,11 @@ public class DatabaseFacadeExtensionsTests
 
         // Act
         var response = _context.Database.ExecuteStoredProcedureCall(procedureCall);
-        var concatenatedParameter = response.OutParameters.First(parameter => parameter.Name == "Concatenated");
+        var concatenatedValue = procedureCall.Parameters.GetValueOf("Concatenated");
 
         // Assert
-        Assert.IsType<string>(concatenatedParameter.Value);
-        Assert.Equal("value1value2", concatenatedParameter.Value);
+        Assert.IsType<string>(concatenatedValue);
+        Assert.Equal("value1value2", concatenatedValue);
     }
 
     [Fact]
@@ -105,10 +105,10 @@ public class DatabaseFacadeExtensionsTests
 
         // Act
         var response = await _context.Database.ExecuteStoredProcedureCallAsync(procedureCall);
-        var concatenatedParameter = response.OutParameters.First(parameter => parameter.Name == "Concatenated");
+        var concatenatedValue = procedureCall.Parameters.GetValueOf("Concatenated");
 
         // Assert
-        Assert.IsType<string>(concatenatedParameter.Value);
-        Assert.Equal("value1value2", concatenatedParameter.Value);
+        Assert.IsType<string>(concatenatedValue);
+        Assert.Equal("value1value2", concatenatedValue);
     }
 }

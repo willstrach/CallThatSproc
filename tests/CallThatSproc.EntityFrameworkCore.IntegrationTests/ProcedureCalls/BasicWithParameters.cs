@@ -7,7 +7,7 @@ public class BasicWithParameters : StoredProcedureCall
 
     public BasicWithParameters(int intParameter, string stringParameter)
     {
-        Parameters.Add(new StoredProcedureParameter("IntParameter", intParameter));
-        Parameters.Add(new StoredProcedureParameter("@NVarcharParameter", stringParameter));
+        Parameters.Add("IntParameter", intParameter);
+        Parameters.Add("@NVarcharParameter", stringParameter);
     }
 }

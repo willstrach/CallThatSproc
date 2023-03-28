@@ -9,8 +9,8 @@ public class SumValuesCall : StoredProcedureCall
 
     public SumValuesCall(int number1, int number2)
     {
-        Parameters.Add(new StoredProcedureParameter("Number1", number1));
-        Parameters.Add(new StoredProcedureParameter("Number2", number2));
-        Parameters.Add(new StoredProcedureParameter("Sum", 0, direction: ParameterDirection.Output));
+        Parameters.Add("Number1", number1);
+        Parameters.Add("Number2", number2);
+        Parameters.Add("Sum", 0, true);
     }
 }

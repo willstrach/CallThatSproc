@@ -23,7 +23,7 @@ public class DatabaseContext : DbContext
         base.OnModelCreating(modelBuilder);
     }
 
-    public DbSet<Animal> Animals { get; set; }
+    public DbSet<Animal> Animals { get; set; } = null!;
 }
 
 public class Animal

@@ -6,6 +6,6 @@ public class SelectWithParametersCall : StoredProcedureCall
 
     public SelectWithParametersCall(int numberOfLegs)
     {
-        Parameters.Add(new StoredProcedureParameter("numberOfLegs", numberOfLegs));
+        Parameters.Add("numberOfLegs", numberOfLegs);
     }
 }
