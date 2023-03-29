@@ -1,4 +1,4 @@
-﻿namespace CallThatSproc.EntityFrameworkCore;
+﻿namespace CallThatSproc;
 
 public interface ISqlCommandBuilder
 {

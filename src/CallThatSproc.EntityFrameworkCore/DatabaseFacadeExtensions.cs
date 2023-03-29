@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace CallThatSproc.EntityFrameworkCore;
+namespace CallThatSproc;
 
 public static class DatabaseFacadeExtensions
 {

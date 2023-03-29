@@ -67,4 +67,31 @@ public class DbSetExtensionsTests
         Assert.NotEmpty(animals);
         Assert.All(animals, animal => Assert.Equal(2, animal.NumberOfLegs));
     }
+
+    [Fact]
+    public async Task FromStoredProcedureAsync_SelectWithOutParameterCall_ShouldBeAbleToReadData()
+    {
+        // Arrange
+        var procedure = new SelectWithOutParameterCall();
+
+        // Act
+        var animals = await _context.Animals.GetFromStoredProcedureCallAsync(procedure);
+
+        // Assert
+        Assert.NotEmpty(animals);
+    }
+
+    [Fact]
+    public async Task FromStoredProcedureAsync_SelectWithOutParameterCall_ShouldBeAbleToReadOutParameter()
+    {
+        // Arrange
+        var procedure = new SelectWithOutParameterCall();
+
+        // Act
+        var animals = await _context.Animals.GetFromStoredProcedureCallAsync(procedure);
+
+        // Assert
+        Assert.IsType<int>(procedure.Parameters.GetValueOf("RandomNumber"));
+        Assert.InRange((int)procedure.Parameters.GetValueOf("RandomNumber"), 0, 100);
+    }
 }

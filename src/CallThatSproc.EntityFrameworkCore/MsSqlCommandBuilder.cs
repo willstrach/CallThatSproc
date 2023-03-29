@@ -1,10 +1,10 @@
-﻿namespace CallThatSproc.EntityFrameworkCore;
+﻿namespace CallThatSproc;
 
 public class MsSqlCommandBuilder : ISqlCommandBuilder
 {
     public string BuildExecProcedureCommand(IStoredProcedureCall procedureCall)
     {
-        var procedureName = $"{procedureCall.Schema}.{procedureCall.Name} ";
+        var procedureName = $"{procedureCall.Schema}.{procedureCall.Name}";
         if (!procedureCall.Parameters.Any()) return $"exec {procedureName}";
 
         var parameterStrings = procedureCall.Parameters

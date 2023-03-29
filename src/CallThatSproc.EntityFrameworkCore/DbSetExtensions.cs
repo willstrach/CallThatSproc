@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace CallThatSproc.EntityFrameworkCore;
+namespace CallThatSproc;
 
 public static class DbSetExtensions
 {
